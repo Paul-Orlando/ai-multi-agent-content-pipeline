@@ -1,208 +1,321 @@
 # AI Multi-Agent Content Pipeline
-### Flowise — Sequential Multi-Agent System
 
-A production-ready multi-agent pipeline built in Flowise that automatically
-researches course content and generates publication-ready marketing copy
-using three specialized sequential agents.
+A multi-agent AI workflow that transforms course materials into polished marketing content using Retrieval-Augmented Generation (RAG), semantic search, and sequential AI agents.
 
 ---
 
-## System Architecture
+# Overview
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    INPUT LAYER                          │
-│                                                         │
-│              📄 DOCX File (course content)              │
-└─────────────────────────┬───────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────┐
-│                  KNOWLEDGE LAYER                        │
-│                                                         │
-│       🔢 OpenAI Embeddings (text-embedding-ada-002)     │
-│                          │                              │
-│                          ▼                              │
-│            🗄️  FAISS Vector Store (local)               │
-└─────────────────────────┬───────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────┐
-│              AGENT 1 — Search Agent                     │
-│                                                         │
-│  → Retrieves course info from FAISS vector store        │
-│  → Expands on each topic                                │
-│  → Identifies target audience                           │
-│                                                         │
-│  Output: Detailed course summary + target audience      │
-└─────────────────────────┬───────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────┐
-│              AGENT 2 — Writer Agent                     │
-│                                                         │
-│  → Receives Search Agent output                         │
-│  → Writes a structured 4-block marketing tweet          │
-│  → Includes clear call to action                        │
-│  → Proofreads for grammatical errors                    │
-│                                                         │
-│  Output: Draft tweet in markdown format                 │
-└─────────────────────────┬───────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────┐
-│              AGENT 3 — Editor Agent                     │
-│                                                         │
-│  → Edits for grammar and conciseness                    │
-│  → Removes hashtags, emojis, and noisy details          │
-│  → Finalizes structure and readability                  │
-│                                                         │
-│  Output: Publication-ready tweet in markdown            │
-└─────────────────────────┬───────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────┐
-│                   FINAL OUTPUT                          │
-│                                                         │
-│         ✅ Tweet — Markdown, Ready to Publish           │
-└─────────────────────────────────────────────────────────┘
+This project implements a sequential multi-agent content generation system powered by OpenAI models, vector embeddings, and semantic retrieval.
+
+The system:
+
+1. Loads course documents
+2. Converts them into vector embeddings
+3. Stores them in a FAISS vector database
+4. Retrieves relevant knowledge using semantic search
+5. Uses specialized AI agents to:
+
+   * research content
+   * generate marketing copy
+   * edit and refine outputs
+
+The final result is publication-ready content generated automatically from source materials.
+
+---
+
+# Architecture
+
+```plaintext
+DOCX Files
+   ↓
+OpenAI Embeddings
+   ↓
+FAISS Vector Store
+   ↓
+Retriever Tool
+   ↓
+Search Agent
+   ↓
+Writer Agent
+   ↓
+Editor Agent
+   ↓
+Final Output
 ```
 
 ---
 
-## Agent Roles
+# Core Features
 
-| Agent | Role | Responsibility |
-|---|---|---|
-| Search Agent | Researcher | Retrieves and expands course topics, identifies target audience |
-| Writer Agent | Marketing Manager | Writes structured 4-block tweet with call to action |
-| Editor Agent | Editor | Refines grammar, removes noise, finalizes for publication |
-
----
-
-## Key Features
-
-- Three specialized sequential agents — each with a single responsibility
-- RAG-powered research — grounded in actual document content
-- FAISS vector store for fast local similarity search
-- Structured agent prompts with tasks and expected outputs
-- Full conversation history shared across all agents
-- Publication-ready markdown output
-- Configurable for any course or product document
+* Multi-agent orchestration
+* Retrieval-Augmented Generation (RAG)
+* Semantic vector search
+* Automated marketing content generation
+* Sequential AI workflows
+* OpenAI embeddings integration
+* FAISS vector database support
+* Editorial refinement pipeline
+* Modular prompt engineering
+* Extensible agent architecture
 
 ---
 
-## Tech Stack
+# Workflow Overview
 
-- **Flowise** — visual multi-agent builder
-- **OpenAI API** — gpt-4o-mini + text-embedding-ada-002
-- **FAISS** — Meta vector store (local)
-- **LangChain** — Sequential Agents framework
-- **Docx File Loader** — document ingestion
+## Stage 1 — Document Loading
+
+Course materials are loaded from DOCX files.
 
 ---
 
-## Agent Configuration
+## Stage 2 — Embedding Generation
 
-| Setting | Value |
-|---|---|
-| Model | gpt-4o-mini |
-| Temperature | 0.9 |
-| Embeddings | text-embedding-ada-002 |
-| Vector Store | FAISS (local) |
-| Document Type | DOCX |
-| Conversation History | All messages (shared across agents) |
-| Output Format | Markdown tweet |
+The documents are transformed into vector embeddings using OpenAI embedding models.
 
 ---
 
-## Setup & Import
+## Stage 3 — Vector Storage
 
-1. Install and run Flowise:
+Embeddings are stored in a FAISS vector database for semantic retrieval.
+
+---
+
+## Stage 4 — Semantic Retrieval
+
+The Retriever Tool searches the vector database for relevant content based on user queries.
+
+---
+
+## Stage 5 — Research Agent
+
+The Search Agent analyzes retrieved information and extracts:
+
+* course topics
+* detailed explanations
+* audience insights
+
+---
+
+## Stage 6 — Writer Agent
+
+The Writer Agent converts the research into engaging marketing content.
+
+Example outputs include:
+
+* tweets
+* announcements
+* promotional copy
+
+---
+
+## Stage 7 — Editor Agent
+
+The Editor Agent refines the generated content by:
+
+* improving grammar
+* simplifying language
+* removing noise
+* ensuring publication readiness
+
+---
+
+# Repository Structure
+
+```plaintext
+ai-multi-agent-content-pipeline/
+│
+├── README.md
+├── changelog.md
+├── .env.example
+├── .gitignore
+├── multi_agent_content_pipeline.json
+│
+├── docs/
+├── prompts/
+├── vectorstore/
+├── tests/
+└── src/
+```
+
+---
+
+# Technologies Used
+
+| Component          | Technology             |
+| ------------------ | ---------------------- |
+| LLM                | OpenAI GPT-4o-mini     |
+| Embeddings         | text-embedding-ada-002 |
+| Vector Store       | FAISS                  |
+| Workflow Engine    | Flowise / LangChain    |
+| Retrieval Strategy | RAG                    |
+| File Loader        | DOCX Document Loader   |
+
+---
+
+# Agent Pipeline
+
+## Search Agent
+
+Responsible for:
+
+* knowledge retrieval
+* topic expansion
+* audience identification
+
+---
+
+## Writer Agent
+
+Responsible for:
+
+* marketing copy generation
+* CTA creation
+* engagement optimization
+
+---
+
+## Editor Agent
+
+Responsible for:
+
+* grammatical correction
+* clarity improvement
+* concise refinement
+
+---
+
+# Installation
+
+## Clone Repository
+
 ```bash
-npm install -g flowise
-npx flowise start
+git clone <repository-url>
+
+cd ai-multi-agent-content-pipeline
 ```
 
-2. Open Flowise at `http://localhost:3000`
-
-3. Import the agent:
-   - Click **Chatflows** → **Add New**
-   - Click **Import**
-   - Upload `multi_agent_content_pipeline.json`
-
-4. Add your OpenAI API key in Flowise credentials
-
-5. Update the FAISS base path in the Faiss node
-   to your local machine path
-
-6. Upload your DOCX course document in the
-   Docx File Loader node
-
-7. Click **Save** and **Deploy**
-
-8. Enter a course name to start the pipeline
-
 ---
 
-## Example Output
+## Install Dependencies
 
-**Input:** Course name entered in chat
-
-**Search Agent** retrieves and expands course topics,
-identifies target audience from embedded document.
-
-**Writer Agent** produces a structured 4-block draft:
-
-```
-Unlock the future of AI with our Advanced Prompt
-Engineering course.
-
-Master chain-of-thought, few-shot, and zero-shot
-prompting techniques used by top AI engineers.
-
-Designed for developers and technical professionals
-ready to level up their LLM applications.
-
-Enroll now and start building smarter AI systems today.
+```bash
+npm install
 ```
 
-**Editor Agent** refines grammar, removes noise,
-and confirms publication readiness.
+---
+
+# Environment Configuration
+
+Create a `.env` file:
+
+```bash
+cp .env.example .env
+```
+
+Example configuration:
+
+```env
+OPENAI_API_KEY=
+
+MODEL_NAME=gpt-4o-mini
+
+EMBEDDING_MODEL=text-embedding-ada-002
+
+FAISS_DB_PATH=./vectorstore/faiss
+
+FLOWISE_PORT=3000
+```
 
 ---
 
-## Customization
+# Running the Pipeline
 
-**Change the document source**
-Replace the DOCX file with any course, product,
-or content document.
+```bash
+npm start
+```
 
-**Adjust tweet style**
-Modify the Writer Agent system prompt to change
-tone, length, or format of the output.
+or
 
-**Add more agents**
-Extend the pipeline — add a LinkedIn Post agent,
-a Social Media Scheduler agent, or a Translation agent
-after the Editor.
-
-**Scale the vector store**
-Swap FAISS for Pinecone or Chroma for larger
-document collections or cloud deployment.
+```bash
+docker compose up
+```
 
 ---
 
-## Changelog
+# Example Workflow
 
-See [changelog.md](changelog.md) for full version history.
+Input:
+
+```plaintext
+AI Product Management Course
+```
+
+Pipeline Execution:
+
+```plaintext
+Retrieve Course Knowledge
+        ↓
+Research Topics
+        ↓
+Generate Marketing Tweet
+        ↓
+Edit and Refine Output
+```
+
+Output:
+
+```markdown
+Launch your AI Product Management skills with our latest course.
+
+Learn real-world frameworks, AI strategy, and execution techniques designed for modern product leaders.
+
+Enroll today and start building AI-driven products with confidence.
+```
 
 ---
 
-## Author
+# Future Improvements
 
-Paul Orlando
-Creative Technologist | AI Agent Developer | Data Analytics
-🌐 [paulforlando.com](https://www.paulforlando.com)
-💼 [LinkedIn](https://www.linkedin.com/in/paul-orlando-7841b5154)
-🐙 [GitHub](https://github.com/Paul-Orlando)
+* Multi-platform publishing
+* LinkedIn and blog generation
+* Memory-enabled agents
+* Human approval workflows
+* Agent analytics
+* Multi-language support
+* Advanced vector search optimization
+* Dynamic tool routing
+
+---
+
+# Development Notes
+
+This project follows a modular AI systems architecture:
+
+* retrieval layer
+* reasoning layer
+* generation layer
+* refinement layer
+
+The system is designed to support scalable multi-agent orchestration and reusable prompt engineering patterns.
+
+---
+
+# License
+
+MIT License
+
+---
+
+# Contributing
+
+Contributions are welcome.
+
+Recommended areas for contribution:
+
+* new agent types
+* prompt optimization
+* retrieval improvements
+* workflow orchestration
+* testing and evaluation
+* deployment automation
