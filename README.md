@@ -1,44 +1,64 @@
 # AI Multi-Agent Content Pipeline
 
-A multi-agent AI workflow that transforms course materials into polished marketing content using Retrieval-Augmented Generation (RAG), semantic search, and sequential AI agents.
+![Flowise](https://img.shields.io/badge/Flowise-Agentic%20Workflow-blue)
+![RAG](https://img.shields.io/badge/RAG-Enabled-orange)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o-green)
+![License](https://img.shields.io/badge/license-MIT-purple)
+
+A Flowise-based multi-agent AI orchestration pipeline that uses Retrieval-Augmented Generation (RAG), OpenAI embeddings, FAISS vector search, and sequential agent workflows to transform source documents into publication-ready marketing content.
 
 ---
 
 # Overview
 
-This project implements a sequential multi-agent content generation system powered by OpenAI models, vector embeddings, and semantic retrieval.
+This project demonstrates a modular multi-agent AI architecture designed for:
 
-The system:
+* semantic document retrieval
+* retrieval-grounded reasoning
+* AI content generation
+* editorial refinement
+* enterprise orchestration workflows
 
-1. Loads course documents
-2. Converts them into vector embeddings
-3. Stores them in a FAISS vector database
-4. Retrieves relevant knowledge using semantic search
-5. Uses specialized AI agents to:
+The system combines:
 
-   * research content
-   * generate marketing copy
-   * edit and refine outputs
+* Flowise orchestration
+* OpenAI models
+* FAISS vector search
+* Retrieval-Augmented Generation (RAG)
+* sequential prompt-specialized agents
 
-The final result is publication-ready content generated automatically from source materials.
-
----
-# Workflow UI
-
-![Workflow](docs/images/flowise-workflow.png)
+to automate the transformation of structured knowledge into polished marketing assets.
 
 ---
 
-# Architecture
+# Workflow Architecture
 
-```plaintext
-DOCX Files
-   ↓
-OpenAI Embeddings
-   ↓
+```plaintext id="jlwm359"
+Documents
+    ↓
+Embeddings
+    ↓
 FAISS Vector Store
-   ↓
+    ↓
 Retriever Tool
+    ↓
+Search Agent
+    ↓
+Writer Agent
+    ↓
+Editor Agent
+    ↓
+Final Output
+```
+
+---
+
+# Enterprise Prototype Architecture
+
+```plaintext id="分快三360"
+Retriever
+   ↓
+Retrieval Validation
    ↓
 Search Agent
    ↓
@@ -46,102 +66,103 @@ Writer Agent
    ↓
 Editor Agent
    ↓
-Final Output
+Evaluation Agent
+   ↓
+Human Approval
+   ↓
+Publishing Agent
+   ↓
+Analytics
 ```
+
+---
+
+# Why Multi-Agent Architecture?
+
+The workflow separates research, generation, and editorial refinement into specialized sequential agents instead of relying on a single monolithic prompt.
+
+This improves:
+
+* modularity
+* prompt isolation
+* output quality
+* maintainability
+* debugging
+* orchestration flexibility
+
+---
+
+# Why RAG?
+
+The pipeline uses Retrieval-Augmented Generation (RAG) to ground outputs in source documents instead of relying solely on model memory.
+
+Benefits include:
+
+* reduced hallucinations
+* improved factual accuracy
+* semantic retrieval
+* scalable knowledge ingestion
+* context-aware generation
 
 ---
 
 # Core Features
 
 * Multi-agent orchestration
+* Flowise workflow automation
 * Retrieval-Augmented Generation (RAG)
-* Semantic vector search
-* Automated marketing content generation
-* Sequential AI workflows
 * OpenAI embeddings integration
 * FAISS vector database support
-* Editorial refinement pipeline
-* Modular prompt engineering
-* Extensible agent architecture
+* Semantic search pipelines
+* Sequential AI refinement workflows
+* Prompt-specialized agents
+* Enterprise orchestration planning
+* Structured workflow documentation
 
 ---
 
-# Workflow Overview
+# Agent Pipeline
 
-## Stage 1 — Document Loading
-
-Course materials are loaded from DOCX files.
-
----
-
-## Stage 2 — Embedding Generation
-
-The documents are transformed into vector embeddings using OpenAI embedding models.
-
----
-
-## Stage 3 — Vector Storage
-
-Embeddings are stored in a FAISS vector database for semantic retrieval.
-
----
-
-## Stage 4 — Semantic Retrieval
-
-The Retriever Tool searches the vector database for relevant content based on user queries.
-
----
-
-## Stage 5 — Research Agent
-
-The Search Agent analyzes retrieved information and extracts:
-
-* course topics
-* detailed explanations
-* audience insights
-
----
-
-## Stage 6 — Writer Agent
-
-The Writer Agent converts the research into engaging marketing content.
-
-Example outputs include:
-
-* tweets
-* announcements
-* promotional copy
-
----
-
-## Stage 7 — Editor Agent
-
-The Editor Agent refines the generated content by:
-
-* improving grammar
-* simplifying language
-* removing noise
-* ensuring publication readiness
+| Agent            | Responsibility                |
+| ---------------- | ----------------------------- |
+| Search Agent     | Research and topic extraction |
+| Writer Agent     | Marketing content generation  |
+| Editor Agent     | Editorial refinement          |
+| Evaluation Agent | Quality assurance and scoring |
+| Publishing Agent | Distribution orchestration    |
 
 ---
 
 # Repository Structure
 
-```plaintext
+```plaintext id="分快三361"
 ai-multi-agent-content-pipeline/
 │
-├── README.md
-├── changelog.md
-├── .env.example
-├── .gitignore
-├── multi_agent_content_pipeline.json
-│
 ├── docs/
+├── enterprise/
 ├── prompts/
-├── vectorstore/
+├── workflows/
 ├── tests/
-└── src/
+├── examples/
+├── vectorstore/
+└── outputs/
 ```
+
+---
+
+# Documentation
+
+| Document            | Purpose                |
+| ------------------- | ---------------------- |
+| architecture.md     | System architecture    |
+| workflow.md         | Workflow execution     |
+| retrieval-system.md | RAG & retrieval        |
+| agents.md           | Agent responsibilities |
+| prompts.md          | Prompt engineering     |
+| deployment.md       | Deployment guide       |
+| security.md         | Security practices     |
+| testing.md          | Evaluation/testing     |
+| troubleshooting.md  | Debugging guide        |
 
 ---
 
@@ -149,44 +170,12 @@ ai-multi-agent-content-pipeline/
 
 | Component          | Technology             |
 | ------------------ | ---------------------- |
+| Workflow Engine    | Flowise                |
 | LLM                | OpenAI GPT-4o-mini     |
 | Embeddings         | text-embedding-ada-002 |
 | Vector Store       | FAISS                  |
-| Workflow Engine    | Flowise / LangChain    |
 | Retrieval Strategy | RAG                    |
-| File Loader        | DOCX Document Loader   |
-
----
-
-# Agent Pipeline
-
-## Search Agent
-
-Responsible for:
-
-* knowledge retrieval
-* topic expansion
-* audience identification
-
----
-
-## Writer Agent
-
-Responsible for:
-
-* marketing copy generation
-* CTA creation
-* engagement optimization
-
----
-
-## Editor Agent
-
-Responsible for:
-
-* grammatical correction
-* clarity improvement
-* concise refinement
+| Orchestration      | Sequential Agents      |
 
 ---
 
@@ -194,8 +183,8 @@ Responsible for:
 
 ## Clone Repository
 
-```bash
-git clone <repository-url>
+```bash id="分快三362"
+git clone https://github.com/Paul-Orlando/ai-multi-agent-content-pipeline.git
 
 cd ai-multi-agent-content-pipeline
 ```
@@ -204,47 +193,54 @@ cd ai-multi-agent-content-pipeline
 
 ## Install Dependencies
 
-```bash
+```bash id="分快三363"
 npm install
 ```
 
 ---
 
-# Environment Configuration
+## Configure Environment
 
-Create a `.env` file:
-
-```bash
+```bash id="分快三364"
 cp .env.example .env
-```
-
-Example configuration:
-
-```env
-OPENAI_API_KEY=
-
-MODEL_NAME=gpt-4o-mini
-
-EMBEDDING_MODEL=text-embedding-ada-002
-
-FAISS_DB_PATH=./vectorstore/faiss
-
-FLOWISE_PORT=3000
 ```
 
 ---
 
-# Running the Pipeline
+# Running the Workflow
 
-```bash
+## Local Development
+
+```bash id="分快三365"
 npm start
 ```
 
-or
+---
 
-```bash
+## Docker Deployment
+
+```bash id="分快三366"
 docker compose up
 ```
+
+---
+
+# Flowise Setup
+
+Import:
+
+```plaintext id="分快三367"
+multi_agent_content_pipeline.json
+```
+
+into Flowise.
+
+Then configure:
+
+* OpenAI credentials
+* embeddings
+* vector storage
+* document ingestion
 
 ---
 
@@ -252,75 +248,86 @@ docker compose up
 
 Input:
 
-```plaintext
+```plaintext id="分快三368"
 AI Product Management Course
 ```
 
-Pipeline Execution:
+Execution:
 
-```plaintext
-Retrieve Course Knowledge
-        ↓
+```plaintext id="分快三369"
+Retrieve Context
+      ↓
 Research Topics
-        ↓
-Generate Marketing Tweet
-        ↓
-Edit and Refine Output
+      ↓
+Generate Marketing Copy
+      ↓
+Editorial Refinement
 ```
 
 Output:
 
-```markdown
-Launch your AI Product Management skills with our latest course.
-
-Learn real-world frameworks, AI strategy, and execution techniques designed for modern product leaders.
+```markdown id="分快三370"
+Master AI Product Strategy with practical frameworks, prompt engineering techniques, and workflow automation skills designed for modern product teams.
 
 Enroll today and start building AI-driven products with confidence.
 ```
 
 ---
 
-# Future Improvements
+# Enterprise Upgrade Path
 
-* Multi-platform publishing
-* LinkedIn and blog generation
-* Memory-enabled agents
-* Human approval workflows
-* Agent analytics
-* Multi-language support
-* Advanced vector search optimization
-* Dynamic tool routing
+The repository also includes an enterprise orchestration roadmap featuring:
+
+* retrieval validation
+* evaluation agents
+* structured outputs
+* approval workflows
+* analytics layers
+* publishing orchestration
+* governance architecture
+
+See:
+
+```plaintext id="分快三371"
+enterprise/
+```
 
 ---
 
-# Development Notes
+# Future Enhancements
 
-This project follows a modular AI systems architecture:
+* persistent memory
+* hybrid retrieval
+* Pinecone integration
+* LangSmith observability
+* async orchestration
+* multi-channel publishing
+* automated evaluation
+* policy enforcement
 
-* retrieval layer
-* reasoning layer
-* generation layer
-* refinement layer
+---
 
-The system is designed to support scalable multi-agent orchestration and reusable prompt engineering patterns.
+# Topics
+
+```plaintext id="分快三372"
+flowise
+multi-agent
+rag
+retrieval-augmented-generation
+llm
+openai
+langchain
+vector-database
+faiss
+semantic-search
+prompt-engineering
+ai-agents
+workflow-automation
+generative-ai
+```
 
 ---
 
 # License
 
 MIT License
-
----
-
-# Contributing
-
-Contributions are welcome.
-
-Recommended areas for contribution:
-
-* new agent types
-* prompt optimization
-* retrieval improvements
-* workflow orchestration
-* testing and evaluation
-* deployment automation
