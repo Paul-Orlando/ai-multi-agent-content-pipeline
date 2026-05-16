@@ -1,0 +1,111 @@
+# Why Multi-Agent Architecture?
+
+The pipeline uses a sequential multi-agent architecture instead of a single monolithic prompt to improve reliability, modularity, and output quality.
+
+---
+
+# Why Not One Agent?
+
+A single agent can technically perform research, generation, and editing in one prompt — but combining too many responsibilities into one context window often reduces consistency and controllability.
+
+Single-agent systems commonly suffer from:
+
+* prompt interference
+* inconsistent outputs
+* hallucinations
+* weak formatting control
+* reduced maintainability
+* difficult debugging
+
+By separating responsibilities into specialized agents, each stage can focus on a single task with a narrowly scoped objective.
+
+---
+
+# Why Sequential Refinement?
+
+The workflow follows a staged refinement process:
+
+```plaintext id="jlwm247"
+Research
+    ↓
+Generate
+    ↓
+Edit
+```
+
+Instead of generating final content immediately, the system progressively improves outputs across multiple passes.
+
+This improves:
+
+| Benefit         | Explanation                            |
+| --------------- | -------------------------------------- |
+| Output Quality  | Each stage improves the previous stage |
+| Readability     | Dedicated editing pass                 |
+| Maintainability | Easier to tune individual stages       |
+| Reliability     | Reduced prompt overload                |
+| Modularity      | Independent agent optimization         |
+
+Sequential refinement mirrors how human content teams operate:
+
+1. Research
+2. Draft
+3. Edit
+4. Publish
+
+---
+
+# Why Prompt Specialization?
+
+Each agent uses a highly specialized prompt optimized for a single responsibility.
+
+| Agent        | Responsibility                |
+| ------------ | ----------------------------- |
+| Search Agent | Research and topic extraction |
+| Writer Agent | Marketing content generation  |
+| Editor Agent | Editorial refinement          |
+
+Specialized prompts improve:
+
+* instruction adherence
+* formatting consistency
+* reasoning quality
+* task clarity
+* debugging simplicity
+
+Rather than forcing one prompt to handle multiple competing goals, the system isolates each task into its own execution layer.
+
+This reduces prompt conflicts and improves output predictability.
+
+---
+
+# Why RAG Grounding?
+
+The workflow uses Retrieval-Augmented Generation (RAG) to ground outputs in source documents rather than relying entirely on model memory.
+
+The retrieval pipeline works as follows:
+
+```plaintext id="jlwm248"
+Documents
+    ↓
+Embeddings
+    ↓
+FAISS Vector Store
+    ↓
+Retriever Tool
+    ↓
+Agent Context
+```
+
+RAG grounding improves:
+
+| Benefit                | Explanation                           |
+| ---------------------- | ------------------------------------- |
+| Factual Accuracy       | Uses real source material             |
+| Reduced Hallucinations | Limits fabricated outputs             |
+| Domain Specificity     | Better contextual understanding       |
+| Scalability            | Supports large knowledge bases        |
+| Contextual Relevance   | Semantic retrieval improves precision |
+
+Instead of asking the model to “guess” based on pretraining alone, the system retrieves semantically relevant information dynamically at runtime.
+
+This creates more reliable, context-aware, and production-ready AI workflows.
