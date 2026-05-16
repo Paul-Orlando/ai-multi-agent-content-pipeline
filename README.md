@@ -23,6 +23,11 @@ The system:
 The final result is publication-ready content generated automatically from source materials.
 
 ---
+# Workflow UI
+
+![Workflow](docs/images/flowise-workflow.png)
+
+---
 
 # Architecture
 
