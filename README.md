@@ -1,16 +1,4 @@
-# AI Multi-Agent Content Pipeline
-### Flowise — Sequential Multi-Agent System
-
-A production-ready multi-agent pipeline built in Flowise
-that automatically researches course content and generates
-publication-ready marketing copy using three specialized
-sequential agents.
-
----
-
 ## System Architecture
-
-
 | Agent | Role | Responsibility |
 |---|---|---|
 | Search Agent | Researcher | Retrieves and expands course topics, identifies target audience |
